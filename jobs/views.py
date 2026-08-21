@@ -1,3 +1,14 @@
-from django.shortcuts import render
+# jobs/views.py
+from django.views.generic import ListView, DetailView
+from .models import Job
 
-# Create your views here.
+class JobListView(ListView):
+    model = Job
+    template_name = 'jobs/job_list.html'
+    context_object_name = 'jobs'  
+    ordering = ['-created_at']    
+
+class JobDetailView(DetailView):
+    model = Job
+    template_name = 'jobs/job_detail.html'
+    context_object_name = 'job'
